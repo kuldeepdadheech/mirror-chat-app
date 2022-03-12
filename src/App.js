@@ -6,7 +6,7 @@ import ChatBoxBody from './Components/ChatBoxBody';
 
 
 
-const Appd=()=>{
+const App=()=>{
 
   const [isDarkModeActive, setIsDarkModeActive] = useState(false)
   const [savedChat, setSavedChat] = useState([]);
@@ -32,7 +32,7 @@ const Appd=()=>{
        return
      }
      const stringValPatternValidation = stringVal => {
-      return /\s/g.test(stringVal);
+      return /\s+$/gi.test(stringVal);
     };
      const isValid = stringValPatternValidation(input);
      console.log("valid", isValid)
@@ -55,8 +55,9 @@ const Appd=()=>{
       console.log("in copy",copy)
       setInput("")
       localStorage.setItem('chats', JSON.stringify(savedChat));
-    }catch (error) {
-      setError( error );
+    }catch (errors) {
+      setError( errors );
+      console.log(error)
     }
  
 }
@@ -64,7 +65,6 @@ const Appd=()=>{
 
   return(<div className='chatBox'>
     
-  
     <ChatBoxHeader isDarkModeActive={isDarkModeActive} setIsDarkModeActiveValue={setIsDarkModeActive}/>
 
     
@@ -80,4 +80,4 @@ const Appd=()=>{
     </div>
   </div>)
 } 
-export default Appd;
+export default App;
